@@ -38,7 +38,7 @@ defmodule Restmachine.HTTP do
     original_header = header
     header = String.downcase(header)
     quote do
-      @shortdoc "Header #{unquote(original_header)}: #{inspect unquote(value)} matches?"
+      @shortdoc "Header #{unquote(original_header)} matches #{inspect unquote(value)} ?"
       defnode unquote(name)({conn, state}), unquote(opts) do
         {headers, conn} = Cage.HTTP.headers(conn)
         {_, actual_value} = List.keyfind(headers, unquote(header), 0)
