@@ -51,4 +51,25 @@ defmodule Restmachine.HTTP do
     end      
   end
 
+  defmacro defmethodnode({name, _, [method]}) do
+    __defmethodnode__(name, method, [])
+  end
+  defmacro defmethodnode({name, _, [method]}, opts) do
+    __defmethodnode__(name, method, opts)
+  end
+  defp __defmethodnode__(name, method, opts) do
+    quote do
+      @shortdoc "Method is #{unquote(method)} ?"
+      defnode unquote(name)({conn, state}), unquote(opts) do
+        {actual_method, conn} = Cage.HTTP.method(conn)
+        if is_record(unquote(method), Regex) do
+          {Regex.match?(unquote(method), actual_method), {conn, state}}
+        else
+          {actual_method == unquote(method), {conn, state}}
+        end
+      end
+    end      
+  end
+
+
 end
