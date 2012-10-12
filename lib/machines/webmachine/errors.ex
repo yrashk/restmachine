@@ -4,6 +4,8 @@ defmodule Restmachine.Webmachine.Errors do
       import Restmachine.HTTP
 
       defstatusnode a13(503,"Service Unavailable")
+      defstatusnode a12(501,"Not Implemented")      
+      defstatusnode a11(414,"Request URI Too Long")      
       defstatusnode a10(405,"Method Not Allowed")      
       defstatusnode a9(400,"Bad Request")
       defstatusnode a8(401,"Unauthorized")
