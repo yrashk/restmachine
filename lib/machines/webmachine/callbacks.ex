@@ -20,7 +20,8 @@ defmodule Restmachine.Webmachine.Callbacks do
           {List.member?(value, method), {req, Restmachine.Webmachine.State.state(s, state)}}        
         end
       else
-        defnode b10({req, state}), true: b9, false: a10 do
+        @compile {:nowarn_unused_function, {:a10, 1}}        
+        defnode b10({req, state}), true: b9 do
           {true, {req, state}}
         end      
       end

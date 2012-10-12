@@ -12,9 +12,17 @@ defmodule Restmachine.Callback do
     __defvaluenode__(name, callback, default, opts)  
   end  
   defp __defvaluenode__(name, callback, default, opts) do
+    unused_choices = 
+    case Macro.safe_term(default) do
+      :ok -> (lc {name, _} inlist opts, name != default, do: name)
+      _ -> []
+    end
+    undefined_opts = lc name inlist Keyword.keys(opts) -- unused_choices, do: {name, opts[name]}
+    undefined_funs = lc name inlist unused_choices, do: {elem(opts[name], 0), 1}
     quote do
       unless Module.defines? __MODULE__, {unquote(callback), 2} do
-        defnode unquote(name)({conn, state}), unquote(opts) do
+        @compile {:nowarn_unused_function, unquote(undefined_funs)}
+        defnode unquote(name)({conn, state}), unquote(undefined_opts) do
          {unquote(default), {conn, state}}
         end
       else
