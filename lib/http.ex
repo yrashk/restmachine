@@ -71,5 +71,25 @@ defmodule Restmachine.HTTP do
     end      
   end
 
+  defmacro defpathnode({name, _, [path]}) do
+    __defpathnode__(name, path, [])
+  end
+  defmacro defpathnode({name, _, [path]}, opts) do
+    __defpathnode__(name, path, opts)
+  end
+  defp __defpathnode__(name, path, opts) do
+    quote do
+      @shortdoc "Path matches #{unquote(path)} ?"
+      defnode unquote(name)({conn, state}), unquote(opts) do
+        {actual_path, conn} = Cage.HTTP.path(conn)
+        if is_record(unquote(path), Regex) do
+          {Regex.match?(unquote(path), actual_path), {conn, state}}
+        else
+          {actual_path == unquote(path), {conn, state}}
+        end
+      end
+    end      
+  end
+
 
 end
