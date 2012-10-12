@@ -3,13 +3,11 @@ defrecord Restmachine.Webmachine.State, state: nil
 defmodule Restmachine.Webmachine do
   use Eflow.Machine.Definition
 
-  def __before_compile__(module) do
-    quoted = quote do
-      import Eflow.Machine.Node
+  defmacro __before_compile__(_module) do
+    quote do
       use Restmachine.Webmachine.Callbacks
       use Restmachine.Webmachine.Errors
     end
-    Module.eval_quoted module, quoted
   end
 
   def define(_) do
