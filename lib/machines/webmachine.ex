@@ -19,7 +19,7 @@ defmodule Restmachine.Webmachine do
       end
       defoverridable init: 1
 
-      @shortdoc "Starts the Restmachine"
+      @shortdoc "Starts the Webmachine"
       def start(req) do
         {:ok, req, state} = init(req)
         b13({req, Restmachine.Webmachine.State.new(state: state)})
