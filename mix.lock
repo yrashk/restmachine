@@ -1,4 +1,4 @@
-[ "cage": "9462156b0112a8c890c0c567014b0f0df15c0153",
-  "cowboy": "1f9d71c3f5cbc2887a6f1362f5b8cd9b52b21390",
-  "eflow": "856d5dceb41fcf9e1174acf0b7be5459d8c1d01a",
-  "ranch": "cd099983b1b807b87fa050d1e4ff0a13aba25b49" ]
+[ "cage": {:git,"https://github.com/yrashk/cage.git","811dfe755fe6b5b2d637b176548a43aae1c40c22",[]},
+  "cowboy": {:git,"https://github.com/extend/cowboy.git","1f9d71c3f5cbc2887a6f1362f5b8cd9b52b21390",[]},
+  "eflow": {:git,"https://github.com/yrashk/eflow.git","255a3908a080e5b256b9fab252ea1dea22b5a9fd",[]},
+  "ranch": {:git,"https://github.com/extend/ranch.git","cd099983b1b807b87fa050d1e4ff0a13aba25b49",[]} ]

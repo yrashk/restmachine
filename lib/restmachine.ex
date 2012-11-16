@@ -1,7 +1,7 @@
 defmodule Restmachine do
   defmodule Behaviour do
     use Behaviour
-    defcallback start(conn)
+    defcallback start(conn :: any), do: any
   end
 
   defmacro __using__(_) do
